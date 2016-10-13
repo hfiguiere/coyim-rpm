@@ -33,16 +33,10 @@ install -d %{buildroot}%{_bindir}
 install -p -m 755 bin/%{name} %{buildroot}%{_bindir}
 install -d %{buildroot}%{_mandir}/man1
 install -p -m 644 build/%{name}.1 %{buildroot}%{_mandir}/man1
-install -d %{buildroot}%{_datadir}/icons/hicolor/16x16/apps
-install -p build/mac-bundle/coy.iconset/icon_16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-install -d %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
-install -p build/mac-bundle/coy.iconset/icon_32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-install -d %{buildroot}%{_datadir}/icons/hicolor/128x128/apps
-install -p build/mac-bundle/coy.iconset/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
-install -d %{buildroot}%{_datadir}/icons/hicolor/256x256/apps
-install -p build/mac-bundle/coy.iconset/icon_256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
-install -d %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
-install -p build/mac-bundle/coy.iconset/icon_512x512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{name}.png
+for size in 16x16 32x32 128x128 256x256 512x512; do
+    install -d %{buildroot}%{_datadir}/icons/hicolor/${size}/apps
+    install -p build/mac-bundle/coy.iconset/icon_${size}.png %{buildroot}%{_datadir}/icons/hicolor/${size}/apps/%{name}.png
+done
 desktop-file-install --dir=${RPM_BUILD_ROOT}%{_datadir}/applications %{SOURCE2}
 
 %post
