@@ -11,7 +11,7 @@ BuildRequires:  desktop-file-utils
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 License:        GPLv3+
-Source0: https://github.com/twstrike/%{name}/archive/v%{version}.tar.gz
+Source0: https://github.com/twstrike/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1: coyim.1
 Source2: coyim.desktop
 
@@ -19,7 +19,7 @@ Source2: coyim.desktop
 A safe and secure chat client for Jabber/XMPP.
 
 %prep
-%autosetup
+%autosetup  -n %{name}-%{version}
 cp -p %SOURCE1 ./build/
 
 %build
@@ -57,9 +57,10 @@ fi
 %defattr(-,root,root,-)
 %doc CONTRIBUTING.md DOWNLOADING.md LICENSE LICENSE.xmpp-client README.md
 %{_bindir}/%{name}
-%{_mandir}/*
-%{_datadir}/*
+%{_mandir}/man1/*
+%{_datadir}/applications/*.desktop
+%{_datadir}/icons/hicolor/*
 
 %changelog
-* Wed Oct 12 2016 Hubert Figuiere <hub@figuiere.net> - 0.3.6-1
+* Wed Oct 12 2016 Hubert Figuiere <hub@figuiere.net> - 0.3.6-1.3
 - Initial release
