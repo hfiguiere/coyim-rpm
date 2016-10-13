@@ -1,1 +1,7 @@
 This is RPM packaging for coyim. Works on Fedora 24.
+
+You can build this with:
+
+fedpkg --dist f24 mockbuild
+
+-- Hub
