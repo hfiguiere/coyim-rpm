@@ -1,6 +1,6 @@
 Name:    coyim
 Version: 0.3.6
-Release: 1.2%{?dist}
+Release: 1.3%{?dist}
 Summary: A safe and secure chat client
 URL: https://coy.im/
 ExclusiveArch:  %{go_arches}
@@ -8,6 +8,8 @@ BuildRequires:  golang >= 1.6
 BuildRequires:  gtk3-devel >= 3.20
 BuildRequires:  git
 BuildRequires:  desktop-file-utils
+Requires(post): desktop-file-utils
+Requires(postun): desktop-file-utils
 License:        GPLv3+
 Source0: https://github.com/twstrike/%{name}/archive/v%{version}.tar.gz
 Source1: coyim.1
@@ -31,7 +33,31 @@ install -d %{buildroot}%{_bindir}
 install -p -m 755 bin/%{name} %{buildroot}%{_bindir}
 install -d %{buildroot}%{_mandir}/man1
 install -p -m 644 build/%{name}.1 %{buildroot}%{_mandir}/man1
+install -d %{buildroot}%{_datadir}/icons/hicolor/16x16/apps
+install -p build/mac-bundle/coy.iconset/icon_16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+install -d %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
+install -p build/mac-bundle/coy.iconset/icon_32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+install -d %{buildroot}%{_datadir}/icons/hicolor/128x128/apps
+install -p build/mac-bundle/coy.iconset/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
+install -d %{buildroot}%{_datadir}/icons/hicolor/256x256/apps
+install -p build/mac-bundle/coy.iconset/icon_256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+install -d %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
+install -p build/mac-bundle/coy.iconset/icon_512x512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{name}.png
 desktop-file-install --dir=${RPM_BUILD_ROOT}%{_datadir}/applications %{SOURCE2}
+
+%post
+/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
+/usr/bin/update-desktop-database &> /dev/null || :
+
+%postun
+if [ $1 -eq 0 ] ; then
+    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
+    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+fi
+/usr/bin/update-desktop-database &> /dev/null || :
+
+%posttrans
+/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files
 %defattr(-,root,root,-)

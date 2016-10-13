@@ -1,17 +1,8 @@
 [Desktop Entry]
 Name=CoyIM
 Comment=Secure Instant Messenger
-# Change the path below to your local installation of coyim
-# and then uncomment the Exec field
 Exec=/usr/bin/coyim
 Terminal=false
 Type=Application
-# Optional:
-# To enable the correct CoyIM icon, you can download Coy.icns from:
-# https://github.com/twstrike/coyim
-# It is in the directory build/mac-bundle.
-# You may place Coy.icns anywhere, but a better place would be either
-# ~/.local/share/icons/ (if .local is set up) or /usr/share/icons/
-# Then uncomment the below Icon field with the correct path
-# Icon=/path/to/Coy.icns
+Icon=coyim
 Categories=Network;
