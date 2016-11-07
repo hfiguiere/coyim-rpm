@@ -5,4 +5,4 @@ Exec=/usr/bin/coyim
 Terminal=false
 Type=Application
 Icon=coyim
-Categories=Network;
+Categories=Network;InstantMessaging;

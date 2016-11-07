@@ -1,6 +1,6 @@
 Name:    coyim
-Version: 0.3.6
-Release: 1.3%{?dist}
+Version: 0.3.7
+Release: 1%{?dist}
 Summary: A safe and secure chat client
 URL: https://coy.im/
 ExclusiveArch:  %{go_arches}
@@ -61,5 +61,7 @@ fi
 %{_datadir}/icons/hicolor/*
 
 %changelog
+* Sun Nov 06 2016 Hubert Figuiere <hub@figuiere.net> - 0.3.7-1
+- Upstream 0.3.7 https://coy.im/coyim/update/2016/10/27/release-notes-0.3.7.html
 * Wed Oct 12 2016 Hubert Figuiere <hub@figuiere.net> - 0.3.6-1.3
 - Initial release
