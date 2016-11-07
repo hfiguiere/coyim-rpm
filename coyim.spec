@@ -20,7 +20,6 @@ A safe and secure chat client for Jabber/XMPP.
 
 %prep
 %autosetup  -n %{name}-%{version}
-cp -p %SOURCE1 ./build/
 
 %build
 mkdir -p src/github.com/twstrike
@@ -32,7 +31,7 @@ make build-gui
 install -d %{buildroot}%{_bindir}
 install -p -m 755 bin/%{name} %{buildroot}%{_bindir}
 install -d %{buildroot}%{_mandir}/man1
-install -p -m 644 build/%{name}.1 %{buildroot}%{_mandir}/man1
+install -p -m 644 %SOURCE1 %{buildroot}%{_mandir}/man1
 for size in 16x16 32x32 128x128 256x256 512x512; do
     install -d %{buildroot}%{_datadir}/icons/hicolor/${size}/apps
     install -p build/mac-bundle/coy.iconset/icon_${size}.png %{buildroot}%{_datadir}/icons/hicolor/${size}/apps/%{name}.png
